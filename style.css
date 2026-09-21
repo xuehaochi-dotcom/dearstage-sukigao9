@@ -171,9 +171,10 @@ code{
 
 .candidate-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin:18px 0 20px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  max-width:500px;
+  margin:14px auto 18px;
 }
 
 .candidate-card{
@@ -186,8 +187,7 @@ code{
   min-width:0;
   transition:
     border-color .15s,
-    transform .15s,
-    opacity .15s;
+    transform .15s;
 }
 
 .candidate-card:active{
@@ -211,13 +211,13 @@ code{
   place-items:center;
   background:rgba(255,77,141,.18);
   color:white;
-  font-size:42px;
+  font-size:32px;
   font-weight:900;
   text-shadow:0 1px 4px rgba(0,0,0,.25);
 }
 
 .candidate-photo{
-  aspect-ratio:3/4;
+  aspect-ratio:4/5;
   background:#e7e3dc;
   overflow:hidden;
   position:relative;
@@ -231,15 +231,17 @@ code{
 }
 
 .candidate-name{
-  font-size:clamp(13px,3.5vw,17px);
+  font-size:13px;
   font-weight:900;
   line-height:1.3;
-  padding:9px 5px 11px;
+  padding:7px 4px 8px;
 }
 
 .qual-button{
   width:100%;
-  margin-top:0;
+  max-width:500px;
+  display:block;
+  margin:0 auto;
 }
 
 /* =========================
@@ -304,7 +306,7 @@ code{
 }
 
 .photo{
-  aspect-ratio:3/4;
+  aspect-ratio:4/5;
   background:#e7e3dc;
   overflow:hidden;
   position:relative;
@@ -352,32 +354,33 @@ code{
 
 .result-head{
   text-align:center;
-  margin-bottom:20px;
+  margin-bottom:16px;
 }
 
 .result-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:8px;
-  margin-bottom:24px;
+  gap:7px;
+  max-width:500px;
+  margin:0 auto 22px;
 }
 
 .result-item{
   background:var(--card);
   border:1px solid var(--line);
-  padding:6px;
+  padding:5px;
   text-align:center;
 }
 
 .result-rank{
-  font-size:11px;
+  font-size:10px;
   font-weight:900;
-  margin:3px 0 6px;
+  margin:3px 0 5px;
   color:var(--accent);
 }
 
 .result-photo{
-  aspect-ratio:3/4;
+  aspect-ratio:4/5;
   background:#e7e3dc;
   overflow:hidden;
 }
@@ -391,23 +394,23 @@ code{
 
 .result-name{
   font-weight:800;
-  font-size:11px;
+  font-size:10px;
   line-height:1.3;
-  padding:7px 2px 4px;
+  padding:6px 2px 4px;
 }
 
-/* 1位だけ大きくしない */
+/* 1位も他と同じサイズ */
 .result-item:nth-child(1){
   grid-column:auto;
-  padding:6px;
+  padding:5px;
 }
 
 .result-item:nth-child(1) .result-photo{
-  aspect-ratio:3/4;
+  aspect-ratio:4/5;
 }
 
 .result-item:nth-child(1) .result-name{
-  font-size:11px;
+  font-size:10px;
 }
 
 /* =========================
@@ -432,6 +435,15 @@ footer{
     padding-right:28px;
   }
 
+  .candidate-grid{
+    gap:12px;
+    max-width:460px;
+  }
+
+  .candidate-photo{
+    aspect-ratio:4/5;
+  }
+
   .vs-wrap{
     gap:20px;
   }
@@ -440,15 +452,8 @@ footer{
     aspect-ratio:4/5;
   }
 
-  .candidate-grid{
-    gap:16px;
-  }
-
-  .candidate-photo{
-    aspect-ratio:4/5;
-  }
-
   .result-grid{
-    gap:14px;
+    gap:10px;
+    max-width:460px;
   }
 }
