@@ -1,4 +1,3 @@
-
 const $ = (s) => document.querySelector(s);
 
 let state = null;
@@ -58,13 +57,9 @@ function setPerson(side, person){
   $(`#${side}Name`).textContent = person.name;
   const img = $(`#${side}Img`);
   img.src = imageFor(person);
-img.onerror = () => {
-  img.src = person.image.replace(/\.jpg$/, ".svg");
-};
-img.alt = person.name;
-img.onload = () => {
-  img.style.display = "block";
-};
+  img.onerror = () => { img.src = person.image.replace(/\.jpg$/, ".svg"); };
+  img.alt = person.name;
+  img.onerror = () => { img.style.display="none"; };
   img.onload = () => { img.style.display="block"; };
 }
 
@@ -140,7 +135,7 @@ function finishBlock(){
 function prepareFinal(){
   state.finalists=shuffle(state.finalists);
   state.finalScores=new Map(state.finalists.map(p=>[p.id,0]));
-  state.finalPairs=roundRobin(state.finalists); // 18人なら153試合
+  state.finalPairs=roundRobin(state.finalists);
   state.finalIndex=0;
   $("#betweenEyebrow").textContent="18 → 9";
   $("#betweenTitle").textContent="FINAL ROUND";
@@ -158,17 +153,22 @@ function finishFinal(){
   const rank=[...state.finalists].sort((a,b)=>{
     const d=(scoreMap.get(b.id)||0)-(scoreMap.get(a.id)||0);
     if(d) return d;
-    // 同率時：直接対決。2人ならその結果、3人以上なら同率者内勝利数
-    const sa=scoreMap.get(a.id)||0, sb=scoreMap.get(b.id)||0;
+
+    const sa=scoreMap.get(a.id)||0;
+    const sb=scoreMap.get(b.id)||0;
     const tied=state.finalists.filter(x=>(scoreMap.get(x.id)||0)===sa);
+
     if(sa===sb && tied.length>1){
       const direct=state.finalHistory.find(h=>
-        (h.winner===a.id && h.loser===b.id)||(h.winner===b.id && h.loser===a.id)
+        (h.winner===a.id && h.loser===b.id) ||
+        (h.winner===b.id && h.loser===a.id)
       );
       if(direct) return direct.winner===a.id ? -1 : 1;
     }
+
     return a.name.localeCompare(b.name,"ja");
   });
+
   state.ranking=rank.slice(0,9);
   renderResult();
 }
@@ -176,20 +176,45 @@ function finishFinal(){
 function renderResult(){
   const grid=$("#resultGrid");
   grid.innerHTML="";
+
   state.ranking.forEach((p,i)=>{
     const el=document.createElement("article");
     el.className="result-item";
     el.innerHTML=`
       <div class="result-rank">${i+1} / 9</div>
-      <div class="result-photo"><img src="${imageFor(p)}" alt="${p.name}"></div>
+      <div class="result-photo">
+        <img src="${imageFor(p)}" alt="${p.name}">
+      </div>
       <div class="result-name">${p.name}</div>
     `;
     grid.appendChild(el);
   });
+
   show("#screen-result");
 }
 
-$("#startBtn").onclick=()=>{init();startBlock();};
-$("#leftCard").onclick=()=>chooseWinner(state.finalPairs.length ? state.finalPairs[state.finalIndex][0] : state.currentPairs[state.pairIndex][0]);
-$("#rightCard").onclick=()=>chooseWinner(state.finalPairs.length ? state.finalPairs[state.finalIndex][1] : state.currentPairs[state.pairIndex][1]);
-$("#restartBtn").onclick=()=>{init();startBlock();};
+$("#startBtn").onclick=()=>{
+  init();
+  startBlock();
+};
+
+$("#leftCard").onclick=()=>{
+  chooseWinner(
+    state.finalPairs.length
+      ? state.finalPairs[state.finalIndex][0]
+      : state.currentPairs[state.pairIndex][0]
+  );
+};
+
+$("#rightCard").onclick=()=>{
+  chooseWinner(
+    state.finalPairs.length
+      ? state.finalPairs[state.finalIndex][1]
+      : state.currentPairs[state.pairIndex][1]
+  );
+};
+
+$("#restartBtn").onclick=()=>{
+  init();
+  startBlock();
+};
