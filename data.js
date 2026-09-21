@@ -299,9 +299,4 @@ const ARTISTS = [
     "name": "吉乃櫻",
     "image": "images/a60.jpg"
   },
-  {
-    "id": "a61",
-    "name": "Lico",
-    "image": "images/a61.jpg"
-  }
 ];
