@@ -18,7 +18,7 @@ function show(id){
 }
 
 function makeBlocks(){
-  // 61人 → 18ブロック：4人×7 + 3人×11
+  // 60人 → 18ブロック：4人×6 + 3人×12
   const shuffled = shuffle(ARTISTS);
   const sizes = [...Array(7).fill(4), ...Array(11).fill(3)];
   let p=0;
