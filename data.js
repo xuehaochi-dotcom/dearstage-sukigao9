@@ -27,7 +27,7 @@ const ARTISTS = [
   {
     "id": "a06",
     "name": "天音みほ",
-    "image": "images/a06.JPG"
+    "image": "images/a06.PNG"
   },
   {
     "id": "a07",
@@ -82,7 +82,7 @@ const ARTISTS = [
   {
     "id": "a17",
     "name": "Kaya",
-    "image": "images/a17.JPG"
+    "image": "images/a17.PNG"
   },
   {
     "id": "a18",
@@ -232,7 +232,7 @@ const ARTISTS = [
   {
     "id": "a47",
     "name": "古川未鈴",
-    "image": "images/a47.JPG"
+    "image": "images/a47.PNG"
   },
   {
     "id": "a48",
