@@ -57,9 +57,14 @@ function imageFor(person){
 function setPerson(side, person){
   $(`#${side}Name`).textContent = person.name;
   const img = $(`#${side}Img`);
-  img.src = imageFor(person);\n  img.onerror = () => { img.src = person.image.replace(/\\.jpg$/, ".svg"); };
-  img.alt = person.name;
-  img.onerror = () => { img.style.display="none"; };
+  img.src = imageFor(person);
+img.onerror = () => {
+  img.src = person.image.replace(/\.jpg$/, ".svg");
+};
+img.alt = person.name;
+img.onload = () => {
+  img.style.display = "block";
+};
   img.onload = () => { img.style.display="block"; };
 }
 
