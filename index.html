@@ -3,73 +3,248 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>DEARSTAGE 好きなお顔Best9</title>
-<meta name="description" content="DEARSTAGEの女性アイドル61人から、あなたの好きなお顔ベスト9を決めるサイト">
+
+<title>好きなお顔ベスト9</title>
+
+<meta name="description" content="DEARSTAGEの女性アイドル60人から、あなたの好きなお顔ベスト9を決めるサイト">
+
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 <div id="app">
+
   <header class="site-header">
     <div class="eyebrow">DEARSTAGE / FAVORITE FACE</div>
-    <h1>好き顔<span>9</span></h1>
-    <p>DEARSTAGEのアイドル61人から<br>あなたの「好きなお顔Best9」を決めよう。</p>
+
+    <h1>好きなお顔<span>ベスト9</span></h1>
+
+    <p>
+      DEARSTAGEのアイドル60人から<br>
+      あなたの「好きなお顔ベスト9」を決めよう。
+    </p>
   </header>
 
   <main>
+
+    <!-- START -->
     <section id="screen-start" class="screen active">
       <div class="hero-card">
-        <div class="hero-number">61 → 18 → 9</div>
-        <h2>あなたの好きなお顔ベスト9、<br>決めます。</h2>
-        <p>予選はランダムに18ブロック。<br>各ブロックの総当たりで代表を決定。<br>決勝は18人の完全総当たり、全153試合。</p>
-        <button class="primary" id="startBtn">START</button>
+
+        <div class="hero-number">60 → 30 → 12 → 9</div>
+
+        <h2>
+          あなたの好きなお顔ベスト9、<br>
+          決めます。
+        </h2>
+
+        <p>
+          まず4人の中から好きな2人を選択。<br>
+          さらに5人の中から好きな2人を選択。<br>
+          最後は12人の総当たりで決定します。
+        </p>
+
+        <button class="primary" id="startBtn">
+          START
+        </button>
+
       </div>
-      <p class="note">※写真は <code>images/</code> フォルダに同名ファイルを入れてください。</p>
+
+      <p class="note">
+        ※写真は <code>images/</code> フォルダに入れてください。
+      </p>
     </section>
 
-    <section id="screen-match" class="screen">
+
+    <!-- QUALIFYING 1 -->
+    <section id="screen-qual1" class="screen">
+
       <div class="phase">
-        <div id="phaseLabel">QUALIFYING</div>
+        <div>QUALIFYING 1</div>
+        <div id="qual1Title"></div>
+      </div>
+
+      <div class="counter" id="qual1Count">
+        0 / 2
+      </div>
+
+      <p class="instruction">
+        4人の中から、好きなお顔を2人選んでください。
+      </p>
+
+      <div id="qual1Grid" class="candidate-grid"></div>
+
+      <button
+        class="primary"
+        id="qual1NextBtn"
+        disabled
+      >
+        NEXT
+      </button>
+
+    </section>
+
+
+    <!-- QUALIFYING 2 -->
+    <section id="screen-qual2" class="screen">
+
+      <div class="phase">
+        <div>QUALIFYING 2</div>
+        <div id="qual2Title"></div>
+      </div>
+
+      <div class="counter" id="qual2Count">
+        0 / 2
+      </div>
+
+      <p class="instruction">
+        5人の中から、好きなお顔を2人選んでください。
+      </p>
+
+      <div id="qual2Grid" class="candidate-grid"></div>
+
+      <button
+        class="primary"
+        id="qual2NextBtn"
+        disabled
+      >
+        NEXT
+      </button>
+
+    </section>
+
+
+    <!-- BETWEEN -->
+    <section id="screen-between" class="screen">
+
+      <div class="hero-card">
+
+        <div
+          class="hero-number"
+          id="betweenEyebrow">
+        </div>
+
+        <h2 id="betweenTitle"></h2>
+
+        <p id="betweenText"></p>
+
+        <button
+          class="primary"
+          id="betweenBtn">
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL MATCH -->
+    <section id="screen-match" class="screen">
+
+      <div class="phase">
+        <div id="phaseLabel">
+          FINAL / ROUND ROBIN
+        </div>
+
         <div id="matchTitle"></div>
       </div>
-      <div class="progress"><div id="progressBar"></div></div>
-      <div class="counter" id="counter"></div>
+
+      <div class="progress">
+        <div id="progressBar"></div>
+      </div>
+
+      <div
+        class="counter"
+        id="counter">
+      </div>
+
       <div class="vs-wrap">
-        <button class="person" id="leftCard">
-          <div class="photo"><img id="leftImg" alt=""></div>
-          <div class="person-name" id="leftName"></div>
+
+        <button
+          class="person"
+          id="leftCard">
+
+          <div class="photo">
+            <img id="leftImg" alt="">
+          </div>
+
+          <div
+            class="person-name"
+            id="leftName">
+          </div>
+
         </button>
-        <div class="vs">VS</div>
-        <button class="person" id="rightCard">
-          <div class="photo"><img id="rightImg" alt=""></div>
-          <div class="person-name" id="rightName"></div>
+
+        <div class="vs">
+          VS
+        </div>
+
+        <button
+          class="person"
+          id="rightCard">
+
+          <div class="photo">
+            <img id="rightImg" alt="">
+          </div>
+
+          <div
+            class="person-name"
+            id="rightName">
+          </div>
+
         </button>
+
       </div>
+
     </section>
 
-    <section id="screen-between" class="screen">
-      <div class="hero-card">
-        <div class="hero-number" id="betweenEyebrow"></div>
-        <h2 id="betweenTitle"></h2>
-        <p id="betweenText"></p>
-        <button class="primary" id="betweenBtn"></button>
-      </div>
-    </section>
 
+    <!-- RESULT -->
     <section id="screen-result" class="screen">
+
       <div class="result-head">
-        <div class="eyebrow">YOUR DEARSTAGE</div>
-        <h2>好き顔<span>9</span></h2>
-        <p>あなたが選んだ、DEARSTAGEの9人。</p>
+
+        <div class="eyebrow">
+          YOUR DEARSTAGE
+        </div>
+
+        <h2>
+          好きなお顔<span>ベスト9</span>
+        </h2>
+
+        <p>
+          あなたが選んだ、DEARSTAGEの9人。
+        </p>
+
       </div>
-      <div id="resultGrid" class="result-grid"></div>
-      <button class="primary" id="restartBtn">もう一度やる</button>
-      <p class="note">同じ60人でも、予選の組み合わせは毎回ランダムです。</p>
+
+      <div
+        id="resultGrid"
+        class="result-grid">
+      </div>
+
+      <button
+        class="primary"
+        id="restartBtn">
+        もう一度やる
+      </button>
+
+      <p class="note">
+        同じ60人でも、予選の組み合わせは毎回ランダムです。
+      </p>
+
     </section>
+
   </main>
 
-  <footer>DEARSTAGE 好きなお顔Best9 / fan-made</footer>
+  <footer>
+    DEARSTAGE 好きなお顔ベスト9 / fan-made
+  </footer>
+
 </div>
+
 <script src="data.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
