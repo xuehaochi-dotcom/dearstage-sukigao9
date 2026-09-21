@@ -146,12 +146,15 @@ function renderQual1(){
     card.className =
       "candidate-card";
 
+    /* ★ ここを変更 */
     card.innerHTML = `
-      <img
-        src="${imageFor(person)}"
-        alt="${person.name}"
-      >
-      <div>${person.name}</div>
+      <div class="candidate-photo">
+        <img
+          src="${imageFor(person)}"
+          alt="${person.name}"
+        >
+      </div>
+      <div class="candidate-name">${person.name}</div>
     `;
 
     card.onclick = () => {
@@ -301,12 +304,15 @@ function renderQual2(){
     card.className =
       "candidate-card";
 
+    /* ★ ここも変更 */
     card.innerHTML = `
-      <img
-        src="${imageFor(person)}"
-        alt="${person.name}"
-      >
-      <div>${person.name}</div>
+      <div class="candidate-photo">
+        <img
+          src="${imageFor(person)}"
+          alt="${person.name}"
+        >
+      </div>
+      <div class="candidate-name">${person.name}</div>
     `;
 
     card.onclick = () => {
